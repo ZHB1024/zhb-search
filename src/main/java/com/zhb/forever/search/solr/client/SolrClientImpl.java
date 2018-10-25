@@ -31,7 +31,8 @@ public class SolrClientImpl implements SolrClient {
     
     private Logger logger = LoggerFactory.getLogger(SolrClientImpl.class);
     
-    private SolrServer solrServer;
+    private SolrServer zhbSolrServer;
+    private SolrServer attachmentSolrServer;
     
     
     @Override
@@ -41,8 +42,8 @@ public class SolrClientImpl implements SolrClient {
         news.setTitle(title);
         news.setContent(content);
         try {
-            this.solrServer.addBean(news);
-            this.solrServer.commit();
+            this.zhbSolrServer.addBean(news);
+            this.zhbSolrServer.commit();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SolrServerException e) {
@@ -86,7 +87,7 @@ public class SolrClientImpl implements SolrClient {
         if (StringUtil.isNotBlank(orderField)) {
             query.setSort(orderField, SolrQuery.ORDER.asc);
         }
-        QueryResponse rsp = query(this.solrServer, query);
+        QueryResponse rsp = query(this.zhbSolrServer, query);
         return rsp.getBeans(NewsIndexVO.class);
     }
     
@@ -94,9 +95,9 @@ public class SolrClientImpl implements SolrClient {
     public void addKnowledge(List<NewsIndexVO> knowIndexDatas) throws SolrServerException, IOException {
         if (null != knowIndexDatas && knowIndexDatas.size() > 0) {
             for (NewsIndexVO knowIndexData : knowIndexDatas) {
-                this.solrServer.addBean(knowIndexData);
+                this.zhbSolrServer.addBean(knowIndexData);
             }
-            this.solrServer.commit();
+            this.zhbSolrServer.commit();
         }
         
     }
@@ -116,7 +117,7 @@ public class SolrClientImpl implements SolrClient {
             }
             
         }
-        QueryResponse rsp = query(this.solrServer, query);
+        QueryResponse rsp = query(this.zhbSolrServer, query);
         List<KnowIndexVO> knowIndexList = rsp.getBeans(KnowIndexVO.class);
         List<KnowledgeVO> knowList = new ArrayList<KnowledgeVO>();
         for (KnowIndexVO knowIndex : knowIndexList) {
@@ -145,15 +146,24 @@ public class SolrClientImpl implements SolrClient {
         }
         throw new RuntimeException("query exception");
     }
-
     
-    public SolrServer getSolrServer() {
-        return solrServer;
+
+    public SolrServer getZhbSolrServer() {
+        return zhbSolrServer;
     }
 
-    public void setSolrServer(SolrServer solrServer) {
-        this.solrServer = solrServer;
+    public void setZhbSolrServer(SolrServer zhbSolrServer) {
+        this.zhbSolrServer = zhbSolrServer;
     }
+
+    public SolrServer getAttachmentSolrServer() {
+        return attachmentSolrServer;
+    }
+
+    public void setAttachmentSolrServer(SolrServer attachmentSolrServer) {
+        this.attachmentSolrServer = attachmentSolrServer;
+    }
+
 }
 
 

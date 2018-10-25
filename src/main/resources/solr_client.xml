@@ -10,7 +10,7 @@
 	 http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:zhb_configer.properties" />
+        <property name="location" value="classpath:solr_server.properties" />
         <property name="ignoreUnresolvablePlaceholders" value="true" />
     </bean>
     
@@ -24,12 +24,16 @@
         <!--property name="parser"></property--><!-- 默认使用二进制协议 -->
     </bean>
     
-    <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer" parent="baseSolrServer">
-        <constructor-arg index="0" value="http://${serverName}:${httpPort}${contextPathAccount}/" />
+    <bean id="zhbSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer" parent="baseSolrServer">
+        <constructor-arg index="0" value="http://${serverName}:${httpPort}${contextPathzhb}/" />
+    </bean>
+    <bean id="attachmentSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer" parent="baseSolrServer">
+        <constructor-arg index="0" value="http://${serverName}:${httpPort}${contextPathattachment}/" />
     </bean>
     
     <bean id="solrClient" class="com.zhb.forever.search.solr.client.SolrClientImpl">
-        <property name="solrServer" ref="solrServer" />
+        <property name="zhbSolrServer" ref="zhbSolrServer" />
+        <property name="attachmentSolrServer" ref="attachmentSolrServer" />
     </bean>
 
 
