@@ -32,6 +32,13 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
+		<!-- solr -->
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>4.4.0</version>
+		</dependency>
+		
 
 </dependencies>
   <build>
