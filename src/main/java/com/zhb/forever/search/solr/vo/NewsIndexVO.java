@@ -9,10 +9,10 @@ import org.apache.solr.client.solrj.beans.Field;
 
 public class NewsIndexVO {
 
-    @Field
+    @Field("id")
     private String id;
 
-    @Field
+    @Field("title")
     private String title;
 
     @Field("content")
