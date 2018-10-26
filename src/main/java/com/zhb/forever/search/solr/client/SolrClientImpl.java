@@ -7,18 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
-import org.apache.solr.common.params.SolrParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.StringUtil;
-import com.zhb.forever.framework.vo.OrderVO;
 import com.zhb.forever.search.solr.SolrClient;
 import com.zhb.forever.search.solr.param.AttachmentInfoSolrIndexParam;
 import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
@@ -35,8 +33,12 @@ public class SolrClientImpl implements SolrClient {
     
     private Logger logger = LoggerFactory.getLogger(SolrClientImpl.class);
     
-    private SolrServer zhbSolrServer;
-    private SolrServer attachmentSolrServer;
+    private HttpSolrClient zhbSolrServer = new HttpSolrClient.Builder("http://localhost:8983/solr/zhb")
+                                            .withConnectionTimeout(10000)//设置连接超时时间
+                                            .withSocketTimeout(10000).build();
+    private HttpSolrClient attachmentSolrServer = new HttpSolrClient.Builder("http://localhost:8983/solr/attachment")
+                                            .withConnectionTimeout(5000)//设置连接超时时间
+                                            .withSocketTimeout(5000).build();;
     
     
     @Override
@@ -269,12 +271,12 @@ public class SolrClientImpl implements SolrClient {
         return PageUtil.getPage(knowList.iterator(), startReturn, pageSize, count);
     }
     
-    private QueryResponse query(SolrServer solr, SolrParams params) {
+    private QueryResponse query(HttpSolrClient solr, SolrQuery params) {
         int i = 0;
         while (i++ < 5) {
             try {
                 return solr.query(params);
-            } catch (SolrServerException e) {
+            } catch (SolrServerException | IOException e) {
                 this.logger.info("solr query exception,time:{},msg:{}", Integer.valueOf(i), e.getMessage());
             }
         }
@@ -282,19 +284,19 @@ public class SolrClientImpl implements SolrClient {
     }
     
 
-    public SolrServer getZhbSolrServer() {
+    public HttpSolrClient getZhbSolrServer() {
         return zhbSolrServer;
     }
 
-    public void setZhbSolrServer(SolrServer zhbSolrServer) {
+    public void setZhbSolrServer(HttpSolrClient zhbSolrServer) {
         this.zhbSolrServer = zhbSolrServer;
     }
 
-    public SolrServer getAttachmentSolrServer() {
+    public HttpSolrClient getAttachmentSolrServer() {
         return attachmentSolrServer;
     }
 
-    public void setAttachmentSolrServer(SolrServer attachmentSolrServer) {
+    public void setAttachmentSolrServer(HttpSolrClient attachmentSolrServer) {
         this.attachmentSolrServer = attachmentSolrServer;
     }
 

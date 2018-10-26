@@ -24,16 +24,16 @@
         <!--property name="parser"></property--><!-- 默认使用二进制协议 -->
     </bean>
     
-    <bean id="zhbSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer" parent="baseSolrServer">
+    <!-- <bean id="zhbSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrClient" parent="baseSolrServer">
         <constructor-arg index="0" value="http://${serverName}:${httpPort}${contextPathzhb}/" />
     </bean>
-    <bean id="attachmentSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer" parent="baseSolrServer">
+    <bean id="attachmentSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrClient" parent="baseSolrServer">
         <constructor-arg index="0" value="http://${serverName}:${httpPort}${contextPathattachment}/" />
-    </bean>
+    </bean> -->
     
     <bean id="solrClient" class="com.zhb.forever.search.solr.client.SolrClientImpl">
-        <property name="zhbSolrServer" ref="zhbSolrServer" />
-        <property name="attachmentSolrServer" ref="attachmentSolrServer" />
+        <!-- <property name="zhbSolrServer" ref="zhbSolrServer" />
+        <property name="attachmentSolrServer" ref="attachmentSolrServer" /> -->
     </bean>
 
 
