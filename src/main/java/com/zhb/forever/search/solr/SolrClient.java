@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import com.zhb.forever.framework.page.Page;
+import com.zhb.forever.search.solr.param.AttachmentInfoSolrIndexParam;
 import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 import com.zhb.forever.search.solr.vo.KnowledgeVO;
 import com.zhb.forever.search.solr.vo.NewsIndexVO;
@@ -39,6 +40,14 @@ public interface SolrClient {
      * @return
      */
     List<AttachmentInfoSolrData> getAttachments(String keyword,String orderField, int start,int pageSize);
+    
+    /**
+     * *查询附件索引，分页
+     * @param AttachmentInfoSolrIndexParam
+     * 
+     * @return
+     */
+    Page<AttachmentInfoSolrData> searchAttachmentsForPage(AttachmentInfoSolrIndexParam param);
     
     /**
      * *删除附件索引

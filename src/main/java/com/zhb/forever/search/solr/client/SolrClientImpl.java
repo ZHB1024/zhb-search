@@ -18,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.StringUtil;
+import com.zhb.forever.framework.vo.OrderVO;
 import com.zhb.forever.search.solr.SolrClient;
+import com.zhb.forever.search.solr.param.AttachmentInfoSolrIndexParam;
 import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 import com.zhb.forever.search.solr.vo.KnowIndexVO;
 import com.zhb.forever.search.solr.vo.KnowledgeVO;
@@ -81,6 +83,45 @@ public class SolrClientImpl implements SolrClient {
         }
         QueryResponse rsp = query(this.attachmentSolrServer, query);
         return rsp.getBeans(AttachmentInfoSolrData.class);
+    }
+    
+    @Override
+    public Page<AttachmentInfoSolrData> searchAttachmentsForPage(AttachmentInfoSolrIndexParam param){
+        if (null == param) {
+            return null;
+        }
+        
+        SolrQuery query = new SolrQuery();
+        if (StringUtil.isNotBlank(param.getKeyWord())) {
+            query.setQuery(String.format("\"%s\"", new Object[] { param.getKeyWord() }));
+        }
+        
+        
+        if (null != param.getParams()) {
+            Map<String,String> params = param.getParams();
+            for (Map.Entry<String, String> entry: params.entrySet()) {
+                query.setParam(entry.getKey(), new String[] { entry.getValue() });
+            }
+        }
+        
+        if (StringUtil.isBlank(param.getKeyWord()) && null == param.getParams() ) {
+            query.setQuery("*:*");
+        }
+        
+        query.setStart(param.getStart());
+        query.setRows(param.getPageSize());
+
+        if (null != param.getSorts()) {
+            query.setSorts(param.getSorts());
+        }
+        
+        QueryResponse rsp = query(this.attachmentSolrServer, query);
+        List<AttachmentInfoSolrData> datas = rsp.getBeans(AttachmentInfoSolrData.class);
+        
+        long count = rsp.getResults().getNumFound();
+        long start = rsp.getResults().getStart();
+        
+        return PageUtil.getPage(datas.iterator(), start, param.getPageSize(), count);
     }
     
     @Override
