@@ -10,6 +10,7 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.params.SolrParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +68,38 @@ public class SolrClientImpl implements SolrClient {
         }
         QueryResponse rsp = query(this.attachmentSolrServer, query);
         return rsp.getBeans(AttachmentInfoSolrData.class);
+    }
+    
+    @Override
+    public void deleteAttachmentById(String id) {
+        if (StringUtil.isNotBlank(id)) {
+            try {
+                UpdateResponse rsp = this.attachmentSolrServer.deleteById(id);
+                UpdateResponse result = this.attachmentSolrServer.commit();
+                logger.info(rsp.toString());
+                logger.info(result.toString());
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void deleteAttachmentsByIds(List<String> ids) {
+        if (null != ids) {
+            try {
+                UpdateResponse rsp = this.attachmentSolrServer.deleteById(ids);
+                UpdateResponse result = this.attachmentSolrServer.commit();
+                logger.info(rsp.toString());
+                logger.info(result.toString());
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     @Override

@@ -36,7 +36,11 @@ public class AttachmentInfoSolrData {
     @Field("thumbnailPath")
     private String thumbnailPath;
 
-   
+    public AttachmentInfoSolrData(String id,String fileName,int type) {
+        this.id = id;
+        this.fileName = fileName;
+        this.type = type;
+    }
 
     public String getId() {
         return id;

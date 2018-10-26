@@ -22,6 +22,10 @@ public interface SolrClient {
     
     List<AttachmentInfoSolrData> getAttachments(String keyword,String orderField, int start,int pageSize);
     
+    void deleteAttachmentById(String id);
+    
+    void deleteAttachmentsByIds(List<String> ids);
+    
     
     List<NewsIndexVO> getNews(String keyword,String orderField, int start,int pageSize);
     
