@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import com.zhb.forever.framework.page.Page;
+import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 import com.zhb.forever.search.solr.vo.KnowledgeVO;
 import com.zhb.forever.search.solr.vo.NewsIndexVO;
 
@@ -16,6 +17,11 @@ import com.zhb.forever.search.solr.vo.NewsIndexVO;
 */
 
 public interface SolrClient {
+    
+    void addAttachments(List<AttachmentInfoSolrData> datas);
+    
+    List<AttachmentInfoSolrData> getAttachments(String keyword,String orderField, int start,int pageSize);
+    
     
     List<NewsIndexVO> getNews(String keyword,String orderField, int start,int pageSize);
     

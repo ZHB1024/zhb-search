@@ -18,6 +18,7 @@ import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.StringUtil;
 import com.zhb.forever.search.solr.SolrClient;
+import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 import com.zhb.forever.search.solr.vo.KnowIndexVO;
 import com.zhb.forever.search.solr.vo.KnowledgeVO;
 import com.zhb.forever.search.solr.vo.NewsIndexVO;
@@ -34,6 +35,39 @@ public class SolrClientImpl implements SolrClient {
     private SolrServer zhbSolrServer;
     private SolrServer attachmentSolrServer;
     
+    
+    @Override
+    public void addAttachments(List<AttachmentInfoSolrData> datas) {
+        if (null != datas && datas.size() > 0) {
+            for (AttachmentInfoSolrData data : datas) {
+                try {
+                    this.attachmentSolrServer.addBean(data);
+                    this.attachmentSolrServer.commit();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SolrServerException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+    }
+    
+    @Override
+    public List<AttachmentInfoSolrData> getAttachments(String keyword,String orderField, int start,int pageSize){
+        SolrQuery query = new SolrQuery();
+        
+        query.setQuery(String.format("\"%s\"", new Object[] { keyword }));
+        
+        query.setStart(start);
+        query.setRows(pageSize);
+
+        if (StringUtil.isNotBlank(orderField)) {
+            query.setSort(orderField, SolrQuery.ORDER.asc);
+        }
+        QueryResponse rsp = query(this.attachmentSolrServer, query);
+        return rsp.getBeans(AttachmentInfoSolrData.class);
+    }
     
     @Override
     public void addNews(String id, String title, String content) {
