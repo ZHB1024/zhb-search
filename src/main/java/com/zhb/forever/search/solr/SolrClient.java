@@ -23,6 +23,13 @@ public interface SolrClient {
      * @param datas
      * 
      */
+    void addAttachment(AttachmentInfoSolrData datas);
+    
+    /**
+     * *批量添加附件索引
+     * @param datas
+     * 
+     */
     void addAttachments(List<AttachmentInfoSolrData> datas);
     
     /**

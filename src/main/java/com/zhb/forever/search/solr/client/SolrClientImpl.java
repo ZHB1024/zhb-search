@@ -38,17 +38,30 @@ public class SolrClientImpl implements SolrClient {
     
     
     @Override
+    public void addAttachment(AttachmentInfoSolrData data) {
+        if (null != data) {
+            try {
+                this.attachmentSolrServer.addBean(data);
+                this.attachmentSolrServer.commit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
+    @Override
     public void addAttachments(List<AttachmentInfoSolrData> datas) {
         if (null != datas && datas.size() > 0) {
-            for (AttachmentInfoSolrData data : datas) {
-                try {
-                    this.attachmentSolrServer.addBean(data);
-                    this.attachmentSolrServer.commit();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (SolrServerException e) {
-                    e.printStackTrace();
-                }
+            try {
+                this.attachmentSolrServer.addBeans(datas);
+                this.attachmentSolrServer.commit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SolrServerException e) {
+                e.printStackTrace();
             }
         }
         
