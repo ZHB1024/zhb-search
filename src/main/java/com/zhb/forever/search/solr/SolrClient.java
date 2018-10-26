@@ -48,6 +48,14 @@ public interface SolrClient {
      */
     void deleteAttachmentsByIds(List<String> ids);
     
+    /**
+     * *删除所有附件索引
+     * @param param
+     * 
+     * @return
+     */
+    void deleteAllAttachments();
+    
     
     List<NewsIndexVO> getNews(String keyword,String orderField, int start,int pageSize);
     

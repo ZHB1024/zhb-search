@@ -103,6 +103,19 @@ public class SolrClientImpl implements SolrClient {
     }
     
     @Override
+    public void deleteAllAttachments() {
+        try {
+            attachmentSolrServer.deleteByQuery("*:*");
+            attachmentSolrServer.commit();  
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }  
+        
+    }
+    
+    @Override
     public void addNews(String id, String title, String content) {
         NewsIndexVO news = new NewsIndexVO();
         news.setId(id);
