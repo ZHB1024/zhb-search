@@ -28,10 +28,7 @@ public class SolrClientImpl implements SolrClient {
     
     private Logger logger = LoggerFactory.getLogger(SolrClientImpl.class);
     
-    private HttpSolrClient attachmentSolrServer = new HttpSolrClient.Builder("http://localhost:8983/solr/attachment")
-                                            .withConnectionTimeout(5000)//设置连接超时时间
-                                            .withSocketTimeout(5000).build();;
-    
+    private HttpSolrClient attachmentSolrServer;
     
     @Override
     public void addAttachment(AttachmentInfoSolrData data) {
