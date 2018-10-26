@@ -18,12 +18,34 @@ import com.zhb.forever.search.solr.vo.NewsIndexVO;
 
 public interface SolrClient {
     
+    /**
+     * *添加附件索引
+     * @param datas
+     * 
+     */
     void addAttachments(List<AttachmentInfoSolrData> datas);
     
+    /**
+     * *查询附件索引，分页
+     * @param keyword，orderField，start，pageSize
+     * 
+     * @return
+     */
     List<AttachmentInfoSolrData> getAttachments(String keyword,String orderField, int start,int pageSize);
     
+    /**
+     * *删除附件索引
+     * @param id
+     * 
+     */
     void deleteAttachmentById(String id);
     
+    /**
+     * *删除附件索引
+     * @param param
+     * 
+     * @return
+     */
     void deleteAttachmentsByIds(List<String> ids);
     
     
