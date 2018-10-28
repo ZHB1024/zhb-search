@@ -91,7 +91,7 @@ public class SolrClientImpl implements SolrClient {
         if (null != param.getParams()) {
             Map<String,String> params = param.getParams();
             for (Map.Entry<String, String> entry: params.entrySet()) {
-                query.setParam(entry.getKey(), new String[] { entry.getValue() });
+                query.setQuery(entry.getKey()+":"+entry.getValue());
             }
         }
         
