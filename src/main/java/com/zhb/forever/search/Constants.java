@@ -11,6 +11,10 @@ public class Constants {
     public static final String SOLR_CLIENT = "solrClient";
     
     
+    public static final String ELASTICSEARCH_CLIENT_CONF = "elasticsearch_client.xml";
+    public static final String ELASTICSEARCH_CLIENT = "elasticSearchClient";
+    
+    
 
 
 }

@@ -1,6 +1,7 @@
 package com.zhb.forever.search;
 
 import com.zhb.forever.framework.spring.bean.locator.SpringBeanLocator;
+import com.zhb.forever.search.elastic.ElasticSearchClient;
 import com.zhb.forever.search.solr.SolrClient;
 
 /**
@@ -15,6 +16,13 @@ public class SearchFactory {
                 Constants.SOLR_CLIENT_CONF).getBean(
                         Constants.SOLR_CLIENT);
         return (SolrClient) bean;
+    }
+    
+    public static ElasticSearchClient getElasticSearchClientBean() {
+        Object bean = SpringBeanLocator.getInstance(
+                Constants.ELASTICSEARCH_CLIENT_CONF).getBean(
+                        Constants.ELASTICSEARCH_CLIENT);
+        return (ElasticSearchClient) bean;
     }
 
 }
