@@ -19,10 +19,10 @@ public class AttachmentInfoSolrData {
     private String fileName;
     
     @Field("type")
-    private String type;
+    private int type;
     
     @Field("likeDegree")
-    private String likeDegree;
+    private int likeDegree;
     
     @Field("createUserId")
     private String createUserId;
@@ -40,7 +40,7 @@ public class AttachmentInfoSolrData {
         
     }
 
-    public AttachmentInfoSolrData(String id,String fileName,String type) {
+    public AttachmentInfoSolrData(String id,String fileName,int type) {
         this.id = id;
         this.fileName = fileName;
         this.type = type;
@@ -62,19 +62,19 @@ public class AttachmentInfoSolrData {
         this.fileName = fileName;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getLikeDegree() {
+    public int getLikeDegree() {
         return likeDegree;
     }
 
-    public void setLikeDegree(String likeDegree) {
+    public void setLikeDegree(int likeDegree) {
         this.likeDegree = likeDegree;
     }
 
