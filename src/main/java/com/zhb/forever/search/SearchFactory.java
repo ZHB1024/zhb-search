@@ -2,6 +2,7 @@ package com.zhb.forever.search;
 
 import com.zhb.forever.framework.spring.bean.locator.SpringBeanLocator;
 import com.zhb.forever.search.elastic.ElasticSearchClient;
+import com.zhb.forever.search.lucene.LuceneClient;
 import com.zhb.forever.search.solr.SolrClient;
 
 /**
@@ -23,6 +24,13 @@ public class SearchFactory {
                 Constants.ELASTICSEARCH_CLIENT_CONF).getBean(
                         Constants.ELASTICSEARCH_CLIENT);
         return (ElasticSearchClient) bean;
+    }
+    
+    public static LuceneClient getLuceneClientBean() {
+        Object bean = SpringBeanLocator.getInstance(
+                Constants.LUCENE_CLIENT_CONF).getBean(
+                        Constants.LUCENE_CLIENT);
+        return (LuceneClient) bean;
     }
 
 }

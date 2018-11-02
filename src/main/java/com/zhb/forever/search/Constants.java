@@ -15,6 +15,10 @@ public class Constants {
     public static final String ELASTICSEARCH_CLIENT = "elasticSearchClient";
     
     
+    public static final String LUCENE_CLIENT_CONF = "lucene_client.xml";
+    public static final String LUCENE_CLIENT = "luceneClient";
+    
+    
 
 
 }
