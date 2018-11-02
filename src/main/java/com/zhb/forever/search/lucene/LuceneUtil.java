@@ -49,12 +49,12 @@ private static Logger log = LoggerFactory.getLogger(LuceneUtil.class);
                 properties.load(fis);
                 INDEX_DIR = properties.getProperty("sys.lucene.index.path");
             }catch(Exception e) {
-                INDEX_DIR = "F:/code/index/lucene";
+                INDEX_DIR = "D:/java/lucene/index";
                 e.printStackTrace();
                 log.info("LuceneUtil load property fail ......");
             }
         }else {
-            INDEX_DIR = "F:/code/index/lucene";
+            INDEX_DIR = "D:/java/lucene/index";
             log.info("环境变量未配置propertyPath");
         }
         
