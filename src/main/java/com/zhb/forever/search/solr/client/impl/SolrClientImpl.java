@@ -1,4 +1,4 @@
-package com.zhb.forever.search.solr.client;
+package com.zhb.forever.search.solr.client.impl;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,18 +15,18 @@ import org.slf4j.LoggerFactory;
 import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.StringUtil;
-import com.zhb.forever.search.solr.SolrClient;
+import com.zhb.forever.search.solr.client.SolrClient;
 import com.zhb.forever.search.solr.param.AttachmentInfoSolrIndexParam;
 import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
-*@createDate 2018年10月25日上午11:51:15
+*@createDate 2018年11月14日上午8:58:37
 */
 
 public class SolrClientImpl implements SolrClient {
-    
-    private Logger logger = LoggerFactory.getLogger(SolrClientImpl.class);
+
+ private Logger logger = LoggerFactory.getLogger(SolrClientImpl.class);
     
     private HttpSolrClient attachmentSolrServer;
     
@@ -180,6 +180,7 @@ public class SolrClientImpl implements SolrClient {
     public void setAttachmentSolrServer(HttpSolrClient attachmentSolrServer) {
         this.attachmentSolrServer = attachmentSolrServer;
     }
+
 
 }
 

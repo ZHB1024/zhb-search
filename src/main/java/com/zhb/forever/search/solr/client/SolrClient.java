@@ -1,4 +1,4 @@
-package com.zhb.forever.search.solr;
+package com.zhb.forever.search.solr.client;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.zhb.forever.search.solr.vo.AttachmentInfoSolrData;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
-*@createDate 2018年10月25日上午11:51:03
+*@createDate 2018年11月14日上午8:58:14
 */
 
 public interface SolrClient {

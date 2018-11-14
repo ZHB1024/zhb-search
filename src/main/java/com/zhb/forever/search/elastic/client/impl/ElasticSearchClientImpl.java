@@ -1,4 +1,4 @@
-package com.zhb.forever.search.elastic.client;
+package com.zhb.forever.search.elastic.client.impl;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -14,8 +14,6 @@ import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsReques
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.update.UpdateRequest;
@@ -30,7 +28,6 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.WildcardQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -43,12 +40,12 @@ import org.slf4j.LoggerFactory;
 import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.RandomUtil;
-import com.zhb.forever.search.elastic.ElasticSearchClient;
+import com.zhb.forever.search.elastic.client.ElasticSearchClient;
 import com.zhb.forever.search.elastic.vo.ElasticSearchIndexData;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
-*@createDate 2018年10月29日下午1:36:53
+*@createDate 2018年11月14日上午9:01:49
 */
 
 public class ElasticSearchClientImpl implements ElasticSearchClient {
@@ -298,6 +295,7 @@ public class ElasticSearchClientImpl implements ElasticSearchClient {
         }
         return json;
     }
+
 }
 
 

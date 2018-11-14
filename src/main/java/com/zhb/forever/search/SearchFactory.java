@@ -1,9 +1,9 @@
 package com.zhb.forever.search;
 
 import com.zhb.forever.framework.spring.bean.locator.SpringBeanLocator;
-import com.zhb.forever.search.elastic.ElasticSearchClient;
-import com.zhb.forever.search.lucene.LuceneClient;
-import com.zhb.forever.search.solr.SolrClient;
+import com.zhb.forever.search.elastic.client.ElasticSearchClient;
+import com.zhb.forever.search.lucene.client.LuceneClient;
+import com.zhb.forever.search.solr.client.SolrClient;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>

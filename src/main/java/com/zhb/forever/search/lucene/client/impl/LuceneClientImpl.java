@@ -1,4 +1,4 @@
-package com.zhb.forever.search.lucene.client;
+package com.zhb.forever.search.lucene.client.impl;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -36,14 +36,14 @@ import org.apache.lucene.store.Directory;
 import com.zhb.forever.framework.page.Page;
 import com.zhb.forever.framework.page.PageUtil;
 import com.zhb.forever.framework.util.StringUtil;
-import com.zhb.forever.search.lucene.LuceneClient;
 import com.zhb.forever.search.lucene.LuceneUtil;
+import com.zhb.forever.search.lucene.client.LuceneClient;
 import com.zhb.forever.search.lucene.vo.DocumentVo;
 
 /**
- * @author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
- * @createDate 2018年11月2日下午2:50:10
- */
+*@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
+*@createDate 2018年11月14日上午9:03:54
+*/
 
 public class LuceneClientImpl implements LuceneClient {
 
@@ -205,3 +205,5 @@ public class LuceneClientImpl implements LuceneClient {
     }
 
 }
+
+

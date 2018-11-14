@@ -1,4 +1,4 @@
-package com.zhb.forever.search.lucene;
+package com.zhb.forever.search.lucene.client;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import com.zhb.forever.search.lucene.vo.DocumentVo;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
-*@createDate 2018年11月2日下午2:49:07
+*@createDate 2018年11月14日上午9:03:35
 */
 
 public interface LuceneClient {

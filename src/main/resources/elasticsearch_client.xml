@@ -9,7 +9,7 @@
 	 http://www.springframework.org/schema/context
 	 http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="elasticSearchClient" class="com.zhb.forever.search.elastic.client.ElasticSearchClientImpl">
+    <bean id="elasticSearchClient" class="com.zhb.forever.search.elastic.client.impl.ElasticSearchClientImpl">
     </bean>
 
 </beans>

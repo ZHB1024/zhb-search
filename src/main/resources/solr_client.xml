@@ -24,7 +24,7 @@
     	<constructor-arg name="builder" value="http://${serverName}:${httpPort}${contextPathattachment}/"/>
 	</bean>
     
-    <bean id="solrClient" class="com.zhb.forever.search.solr.client.SolrClientImpl">
+    <bean id="solrClient" class="com.zhb.forever.search.solr.client.impl.SolrClientImpl">
         <property name="attachmentSolrServer" ref="attachmentSolrServer" />
     </bean>
 

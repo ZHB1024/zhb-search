@@ -1,4 +1,4 @@
-package com.zhb.forever.search.elastic;
+package com.zhb.forever.search.elastic.client;
 
 import java.net.UnknownHostException;
 import java.util.List;
@@ -8,7 +8,7 @@ import com.zhb.forever.search.elastic.vo.ElasticSearchIndexData;
 
 /**
 *@author   zhanghb<a href="mailto:zhb20111503@126.com">zhanghb</a>
-*@createDate 2018年10月29日下午1:36:38
+*@createDate 2018年11月14日上午9:01:26
 */
 
 public interface ElasticSearchClient {
